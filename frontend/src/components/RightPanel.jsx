@@ -73,9 +73,9 @@ export default function RightPanel() {
               </div>
             ) : (
               <ul className="space-y-1.5" data-testid="validation-errors">
-                {validationErrors.map((e, i) => (
+                {validationErrors.map((e) => (
                   <li
-                    key={i}
+                    key={e}
                     className="text-xs rounded-md border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-amber-700 dark:text-amber-400"
                   >
                     {e}

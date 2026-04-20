@@ -129,7 +129,7 @@ export default function SimulationPanel({ open, onOpenChange }) {
               const Icon = ICON[log.level] || Info;
               return (
                 <div
-                  key={i}
+                  key={`${log.timestamp}-${i}`}
                   className="px-4 py-1.5 border-b border-border/40 hover:bg-accent/40 flex items-start gap-3"
                   data-testid={`simulation-log-${i}`}
                 >

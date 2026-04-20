@@ -50,7 +50,7 @@ class TestValidate:
         r = client.post(f"{API}/validate", json=_valid_graph())
         assert r.status_code == 200
         body = r.json()
-        assert body["valid"] is True
+        assert body["valid"] == True
         assert body["errors"] == []
 
     def test_invalid_no_start(self, client):
@@ -59,13 +59,13 @@ class TestValidate:
         r = client.post(f"{API}/validate", json=g)
         assert r.status_code == 200
         body = r.json()
-        assert body["valid"] is False
+        assert body["valid"] == False
         assert any("Start" in e for e in body["errors"])
 
     def test_empty(self, client):
         r = client.post(f"{API}/validate", json={"nodes": [], "edges": []})
         assert r.status_code == 200
-        assert r.json()["valid"] is False
+        assert r.json()["valid"] == False
 
 
 # ---------- Simulate ----------
@@ -74,7 +74,7 @@ class TestSimulate:
         r = client.post(f"{API}/simulate", json=_valid_graph())
         assert r.status_code == 200
         body = r.json()
-        assert body["success"] is True
+        assert body["success"] == True
         assert isinstance(body["logs"], list)
         assert len(body["logs"]) > 0
         for log in body["logs"]:
@@ -84,7 +84,7 @@ class TestSimulate:
         r = client.post(f"{API}/simulate", json={"nodes": [], "edges": []})
         assert r.status_code == 400
         body = r.json()
-        assert body["success"] is False
+        assert body["success"] == False
         assert isinstance(body["errors"], list) and len(body["errors"]) > 0
 
 
@@ -149,7 +149,7 @@ class TestWorkflowsCRUD:
         wf_id = TestWorkflowsCRUD.created_ids[0]
         r = client.delete(f"{API}/workflows/{wf_id}")
         assert r.status_code == 200
-        assert r.json().get("deleted") is True
+        assert r.json().get("deleted") == True
         # Verify gone
         g = client.get(f"{API}/workflows/{wf_id}")
         assert g.status_code == 404

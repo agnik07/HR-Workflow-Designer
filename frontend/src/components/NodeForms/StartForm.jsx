@@ -4,6 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Plus, X } from "lucide-react";
 import { useWorkflowStore } from "@/store/workflowStore";
 
+const uid = () =>
+  (typeof crypto !== "undefined" && crypto.randomUUID)
+    ? crypto.randomUUID()
+    : `m-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
 export default function StartForm({ node }) {
   const updateNodeData = useWorkflowStore((s) => s.updateNodeData);
   const metadata = node.data?.metadata || [];
@@ -31,7 +36,7 @@ export default function StartForm({ node }) {
             variant="ghost"
             size="sm"
             className="h-7 px-2 text-xs"
-            onClick={() => setMeta([...metadata, { key: "", value: "" }])}
+            onClick={() => setMeta([...metadata, { _id: uid(), key: "", value: "" }])}
             data-testid="form-start-add-meta"
           >
             <Plus className="w-3 h-3 mr-1" /> Add
@@ -41,7 +46,7 @@ export default function StartForm({ node }) {
           <p className="text-xs text-muted-foreground italic">No metadata yet.</p>
         )}
         {metadata.map((m, i) => (
-          <div key={i} className="flex items-center gap-1.5">
+          <div key={m._id || `meta-${i}`} className="flex items-center gap-1.5">
             <Input
               value={m.key}
               onChange={(e) => {

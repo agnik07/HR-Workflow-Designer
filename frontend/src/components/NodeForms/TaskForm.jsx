@@ -5,6 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Plus, X } from "lucide-react";
 import { useWorkflowStore } from "@/store/workflowStore";
 
+const uid = () =>
+  (typeof crypto !== "undefined" && crypto.randomUUID)
+    ? crypto.randomUUID()
+    : `f-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
 export default function TaskForm({ node }) {
   const updateNodeData = useWorkflowStore((s) => s.updateNodeData);
   const customFields = node.data?.customFields || [];
@@ -66,7 +71,7 @@ export default function TaskForm({ node }) {
             variant="ghost"
             size="sm"
             className="h-7 px-2 text-xs"
-            onClick={() => setFields([...customFields, { key: "", value: "" }])}
+            onClick={() => setFields([...customFields, { _id: uid(), key: "", value: "" }])}
           >
             <Plus className="w-3 h-3 mr-1" /> Add
           </Button>
@@ -75,7 +80,7 @@ export default function TaskForm({ node }) {
           <p className="text-xs text-muted-foreground italic">No custom fields.</p>
         )}
         {customFields.map((f, i) => (
-          <div key={i} className="flex items-center gap-1.5">
+          <div key={f._id || `field-${i}`} className="flex items-center gap-1.5">
             <Input
               value={f.key}
               onChange={(e) => {
