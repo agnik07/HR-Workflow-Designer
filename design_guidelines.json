@@ -1,0 +1,174 @@
+{
+  "project_name": "HR Workflow Designer",
+  "domain": "Enterprise Dashboard / SaaS",
+  "theme_and_archetype": {
+    "theme": "Light & Dark Mode (Toggle Supported)",
+    "archetype": "Archetype 4 (Swiss & High-Contrast) mixed with Archetype 1 (Organic Trust)",
+    "description": "A highly professional, minimal, and functional enterprise dashboard designed for HR admins. Focuses on clarity, structure, and low cognitive load. Colors are strictly functional, separating different node types by subtle tint while keeping the overall palette neutral and sophisticated."
+  },
+  "typography": {
+    "strategy": "Professional Enterprise. Clean and highly legible at small sizes for dense interfaces.",
+    "fonts": {
+      "heading": "Manrope",
+      "body": "IBM Plex Sans",
+      "mono": "JetBrains Mono"
+    },
+    "scale": {
+      "h1": "text-2xl sm:text-3xl tracking-tight font-semibold",
+      "h2": "text-xl sm:text-2xl tracking-tight font-semibold",
+      "h3": "text-lg sm:text-xl font-medium",
+      "body": "text-sm sm:text-base leading-relaxed",
+      "small": "text-xs sm:text-sm font-medium tracking-wide",
+      "label": "text-[10px] sm:text-xs uppercase tracking-[0.05em] font-semibold text-slate-500 dark:text-slate-400"
+    }
+  },
+  "colors": {
+    "light": {
+      "background": "#F8FAFC",
+      "surface": "#FFFFFF",
+      "surface_hover": "#F1F5F9",
+      "border": "#E2E8F0",
+      "text_primary": "#0F172A",
+      "text_secondary": "#64748B",
+      "primary": "#0F172A",
+      "primary_hover": "#334155",
+      "danger": "#EF4444",
+      "canvas_dots": "#CBD5E1"
+    },
+    "dark": {
+      "background": "#020617",
+      "surface": "#0F172A",
+      "surface_hover": "#1E293B",
+      "border": "#1E293B",
+      "text_primary": "#F8FAFC",
+      "text_secondary": "#94A3B8",
+      "primary": "#F8FAFC",
+      "primary_hover": "#E2E8F0",
+      "danger": "#F87171",
+      "canvas_dots": "#334155"
+    },
+    "node_types": {
+      "start": {
+        "color": "#10B981",
+        "bg_light": "#ECFDF5",
+        "bg_dark": "#022C22",
+        "description": "Emerald/Green for entry points"
+      },
+      "task": {
+        "color": "#3B82F6",
+        "bg_light": "#EFF6FF",
+        "bg_dark": "#172554",
+        "description": "Blue for standard human tasks"
+      },
+      "approval": {
+        "color": "#F59E0B",
+        "bg_light": "#FFFBEB",
+        "bg_dark": "#451A03",
+        "description": "Amber for gates requiring decision"
+      },
+      "automated": {
+        "color": "#8B5CF6",
+        "bg_light": "#F5F3FF",
+        "bg_dark": "#2E1065",
+        "description": "Purple/Indigo for system actions"
+      },
+      "end": {
+        "color": "#64748B",
+        "bg_light": "#F8FAFC",
+        "bg_dark": "#0F172A",
+        "description": "Slate for terminal states"
+      }
+    }
+  },
+  "layout_and_spacing": {
+    "strategy": "Three-pane IDE/Canvas layout. Full viewport height (100vh). No page scrolling, only pane scrolling.",
+    "structure": {
+      "navbar": "h-14 border-b border-border bg-surface px-4 flex items-center justify-between z-40 relative",
+      "main_workspace": "flex flex-1 h-[calc(100vh-3.5rem)] overflow-hidden",
+      "left_sidebar": "w-64 border-r border-border bg-surface flex flex-col z-30",
+      "canvas_area": "flex-1 relative bg-background",
+      "right_panel": "w-80 border-l border-border bg-surface flex flex-col shadow-[-4px_0_24px_-10px_rgba(0,0,0,0.1)] z-30",
+      "bottom_simulation_panel": "absolute bottom-0 left-0 right-0 h-48 border-t border-border bg-surface z-40 transform transition-transform"
+    },
+    "canvas_controls": "absolute bottom-4 left-4 z-20 flex gap-2",
+    "minimap": "absolute bottom-4 right-4 z-20 border border-border shadow-sm rounded-md overflow-hidden bg-surface"
+  },
+  "components": {
+    "nodes": {
+      "style": "bg-surface border border-border rounded-lg shadow-sm min-w-[240px] transition-all duration-200",
+      "selected_state": "ring-2 ring-primary border-transparent shadow-md",
+      "header": "px-3 py-2 border-b border-border flex items-center gap-2",
+      "body": "p-3 text-sm text-text_secondary",
+      "handles": "w-3 h-3 rounded-full bg-surface border-2 border-slate-400 dark:border-slate-500"
+    },
+    "sidebar_draggable_items": {
+      "style": "p-3 mb-2 border border-border rounded-md cursor-grab active:cursor-grabbing hover:bg-surface_hover hover:border-slate-300 dark:hover:border-slate-600 transition-colors flex items-center gap-3 text-sm font-medium"
+    },
+    "right_panel_form": {
+      "style": "p-4 flex flex-col gap-4 overflow-y-auto",
+      "input_group": "flex flex-col gap-1.5"
+    },
+    "simulation_logs": {
+      "container": "h-full flex flex-col font-mono text-xs",
+      "log_entry": "px-4 py-2 border-b border-border hover:bg-surface_hover flex items-start gap-3",
+      "success_log": "text-emerald-600 dark:text-emerald-400",
+      "error_log": "text-red-600 dark:text-red-400",
+      "info_log": "text-blue-600 dark:text-blue-400"
+    }
+  },
+  "interactions_and_motion": {
+    "nodes": "Subtle scale up (scale: 1.02) on drag start. Smooth border color transition on hover.",
+    "panels": "Slide in/out for right panel and bottom simulation drawer using framer-motion.",
+    "edges": "Animated dashed strokes for active/simulating workflows. Smooth step bezier curves.",
+    "feedback": "Use toast notifications (Sonner) for Save, Export, Import, and Validation warnings."
+  },
+  "icons": {
+    "library": "@phosphor-icons/react",
+    "mapping": {
+      "start": "PlayCircle",
+      "task": "ClipboardText",
+      "approval": "CheckCircle",
+      "automated": "Robot",
+      "end": "StopCircle",
+      "save": "FloppyDisk",
+      "export": "Export",
+      "import": "DownloadSimple",
+      "simulate": "Play",
+      "undo": "ArrowUUpLeft",
+      "redo": "ArrowUUpRight",
+      "theme_toggle": "Sun/Moon",
+      "warning": "WarningCircle"
+    }
+  },
+  "ui_libraries": {
+    "core": "Tailwind CSS, React Flow (for canvas), Framer Motion",
+    "components": "Shadcn UI (Button, Input, Select, Switch, Dialog, Tabs, ScrollArea)",
+    "notifications": "Sonner (for toasts)"
+  },
+  "testing_requirements": {
+    "attributes": [
+      "data-testid='navbar-save-btn'",
+      "data-testid='navbar-simulate-btn'",
+      "data-testid='sidebar-node-task'",
+      "data-testid='canvas-react-flow'",
+      "data-testid='right-panel-config'",
+      "data-testid='simulation-drawer'"
+    ]
+  },
+  "media": {
+    "abstract_background": {
+      "url": "https://images.unsplash.com/photo-1712260703244-c749dbd3f913?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMGFic3RyYWN0JTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzY2NjUzMjh8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Subtle wavy abstract background, suitable for empty states or login screens.",
+      "category": "empty_state"
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. Setup React Flow with `reactflow` library. Ensure proper React Flow Provider wraps the workspace.",
+    "2. Implement a global store (Zustand or Context) for nodes, edges, and workflow state.",
+    "3. Build custom Node components matching the `node_types` color scheme.",
+    "4. Implement Drag & Drop using HTML5 drag events or `@dnd-kit/core` interacting with React Flow's `onDrop`.",
+    "5. Ensure the Right Panel only mounts when a node is selected, updating the store `onChange`.",
+    "6. Apply Dark Mode using Tailwind's `dark:` class strategy via a global provider.",
+    "7. Include comprehensive validation logic before allowing export/simulation (e.g., checking for unconnected nodes)."
+  ]
+}
