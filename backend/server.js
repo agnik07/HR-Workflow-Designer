@@ -274,10 +274,14 @@ app.post('/api/simulate', (req, res) => {
 });
 
 // ---- Workflow CRUD ----
-app.get('/api/workflows', async (_req, res) => {
+app.get('/api/workflows', async (req, res) => {
   try {
+    const limit = Math.min(Number(req.query.limit) || 100, 500);
+    const skip = Math.max(Number(req.query.skip) || 0, 0);
     const docs = await Workflow.find({}, { _id: 0, __v: 0 })
       .sort({ updatedAt: -1 })
+      .skip(skip)
+      .limit(limit)
       .lean();
     res.json(docs);
   } catch (err) {
