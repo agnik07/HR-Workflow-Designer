@@ -2,6 +2,9 @@
 
 A production-quality MERN application for HR admins to **visually design and simulate** internal workflows — onboarding, leave approvals, document verification, and more.
 
+check it out here 👇🏻
+https://hr-workflow-designer-beige.vercel.app
+
 ## Tech Stack
 
 - **Frontend**: React (CRA) + Tailwind CSS + shadcn/ui + React Flow + Zustand + Axios + React Hook Form
